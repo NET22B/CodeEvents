@@ -16,18 +16,19 @@ namespace CodeEvents.Api.Controllers
     public class CodeEventsController : ControllerBase
     {
         private readonly CodeEventsApiContext db;
+        private readonly UnitOfWork uow;
 
         public CodeEventsController(CodeEventsApiContext context)
         {
             db = context;
-            var uow = new UnitOfWork(db);
+             uow = new UnitOfWork(db);
         }
 
-        // GET: api/CodeEvents
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CodeEvent>>> GetCodeEvent()
         {
-           return null;
+            var events = await uow.CodeEventRepository.GetAsync();
+            return Ok(events);
         }
 
    
