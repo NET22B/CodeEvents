@@ -9,11 +9,12 @@ namespace CodeEvents.Api.Data
 {
     public class CodeEventsApiContext : DbContext
     {
+        public DbSet<CodeEvent> CodeEvent { get; set; } = default!;
+
         public CodeEventsApiContext (DbContextOptions<CodeEventsApiContext> options)
             : base(options)
         {
         }
 
-        public DbSet<EventsApi.Core.Entities.CodeEvent> CodeEvent { get; set; } = default!;
     }
 }

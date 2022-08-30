@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CodeEvents.Api.Data;
 using EventsApi.Core.Entities;
+using CodeEvents.Api.Data.Repositories;
 
 namespace CodeEvents.Api.Controllers
 {
@@ -14,11 +15,12 @@ namespace CodeEvents.Api.Controllers
     [ApiController]
     public class CodeEventsController : ControllerBase
     {
-        private readonly CodeEventsApiContext _context;
+        private readonly CodeEventsApiContext db;
 
         public CodeEventsController(CodeEventsApiContext context)
         {
-            _context = context;
+            db = context;
+            var uow = new UnitOfWork(db);
         }
 
         // GET: api/CodeEvents
