@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using EventsApi.Core.Entities;
+using CodeEvents.Api.Core.Entities;
 
 namespace CodeEvents.Api.Data
 {

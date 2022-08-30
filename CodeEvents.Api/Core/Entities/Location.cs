@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EventsApi.Core.Entities
+namespace CodeEvents.Api.Core.Entities
 {
 #nullable disable
     public class Location

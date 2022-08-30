@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using CodeEvents.Api.Data;
-
-
-
+using CodeEvents.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +20,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(MapperProfile));
 
 var app = builder.Build();
+
+await app.SeedDataAsync();
 
 
 

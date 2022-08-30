@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CodeEvents.Api.Data;
-using EventsApi.Core.Entities;
 using CodeEvents.Api.Data.Repositories;
+using CodeEvents.Api.Core.Entities;
 
 namespace CodeEvents.Api.Controllers
 {
