@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using CodeEvents.Api.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<CodeEventsApiContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CodeEventsApiContext") ?? throw new InvalidOperationException("Connection string 'CodeEventsApiContext' not found.")));
 
 // Add services to the container.
 
