@@ -21,6 +21,25 @@ namespace CodeEvents.Api.Data.Repositories
                             await db.CodeEvent
                             .Include(c => c.Location)
                             .ToListAsync();
+        }   
+        
+        internal async Task<CodeEvent?> GetAsync(string name, bool includeLectures = false)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException($"'{nameof(name)}' cannot be null or whitespace.", nameof(name));
+            }
+
+            var query = db.CodeEvent
+                            .Include(c => c.Location)
+                            .AsQueryable();
+
+            if (includeLectures)
+            {
+                query = query.Include(c => c.Lectures);
+            }
+
+            return await query.FirstOrDefaultAsync(c => c.Name == name);
         }
     }
 }
