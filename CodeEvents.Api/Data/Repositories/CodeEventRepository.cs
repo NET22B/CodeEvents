@@ -14,7 +14,9 @@ namespace CodeEvents.Api.Data.Repositories
 
         internal async Task<IEnumerable<CodeEvent>> GetAsync()
         {
-            return await db.CodeEvent.ToListAsync();
+            return await db.CodeEvent
+                            .Include(c => c.Location)
+                            .ToListAsync();
         }
     }
 }
