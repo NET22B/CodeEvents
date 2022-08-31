@@ -41,5 +41,10 @@ namespace CodeEvents.Api.Data.Repositories
 
             return await query.FirstOrDefaultAsync(c => c.Name == name);
         }
+
+        internal async Task AddAsync(CodeEvent codeevent)
+        {
+            await db.AddAsync(codeevent);
+        }
     }
 }

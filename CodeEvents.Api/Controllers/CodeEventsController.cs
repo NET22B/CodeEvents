@@ -50,6 +50,25 @@ namespace CodeEvents.Api.Controllers
             return Ok(dto);
         }
 
-   
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<CodeEvent>>> CreateCodeEvent(CodeEventDto dto)
+        {
+
+            if(await uow.CodeEventRepository.GetAsync(dto.Name) != null)
+            {
+                ModelState.AddModelError("Name", "Name is in use");
+                return BadRequest(ModelState);
+            }
+
+            var codeevent = mapper.Map<CodeEvent>(dto);
+            await uow.CodeEventRepository.AddAsync(codeevent);
+            await uow.CompleteAsync();
+
+
+            return CreatedAtAction(nameof(GetCodeEvent), new { name = codeevent.Name }, dto);
+           
+        }
+
+
     }
 }
