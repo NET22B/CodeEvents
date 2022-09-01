@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using CodeEvents.Api.Core.Dto;
 using CodeEvents.Api.Core.Entities;
+using CodeEvents.Common.Dto;
 
 namespace CodeEvents.Api.Data
 {

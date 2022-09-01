@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using CodeEvents.Api.Core.Dto;
 using CodeEvents.Api.Core.Entities;
 using CodeEvents.Api.Data;
 using CodeEvents.Api.Data.Repositories;
+using CodeEvents.Common.Dto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

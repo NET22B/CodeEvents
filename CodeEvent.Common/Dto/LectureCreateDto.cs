@@ -1,4 +1,4 @@
-﻿namespace CodeEvents.Api.Core.Dto
+﻿namespace CodeEvent.Common.Dto
 {
 #nullable disable
     public class LectureCreateDto

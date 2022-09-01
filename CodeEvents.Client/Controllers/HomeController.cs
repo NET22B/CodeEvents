@@ -6,26 +6,25 @@ namespace CodeEvents.Client.Controllers
 {
     public class HomeController : Controller
     {
+        private HttpClient httpClient;
 
         public HomeController()
         {
             
-
+           httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri("https://localhost:7150");
         }
 
         public IActionResult Index()
         {
-
+            var res = SimpleGet();
             return View();
         }
 
-
-
-
-
-
-
-
+        private async Task<IEnumerable<object>> SimpleGet()
+        {
+            return null;
+        }
 
         public IActionResult Privacy()
         {

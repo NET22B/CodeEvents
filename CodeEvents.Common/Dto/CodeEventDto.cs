@@ -1,7 +1,6 @@
-﻿using CodeEvents.Api.Core.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace CodeEvents.Api.Core.Dto
+namespace CodeEvents.Common.Dto
 {
 #nullable disable
     public class CodeEventDto

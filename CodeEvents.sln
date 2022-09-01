@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeEvents.Api", "CodeEvent
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeEvents.Client", "CodeEvents.Client\CodeEvents.Client.csproj", "{7A31276E-1A60-4D83-A0FD-3F90959FE1D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeEvents.Common", "CodeEvents.Common\CodeEvents.Common.csproj", "{78F6E514-CA42-4AAC-B7E8-073733BD917B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7A31276E-1A60-4D83-A0FD-3F90959FE1D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A31276E-1A60-4D83-A0FD-3F90959FE1D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A31276E-1A60-4D83-A0FD-3F90959FE1D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78F6E514-CA42-4AAC-B7E8-073733BD917B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78F6E514-CA42-4AAC-B7E8-073733BD917B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78F6E514-CA42-4AAC-B7E8-073733BD917B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78F6E514-CA42-4AAC-B7E8-073733BD917B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

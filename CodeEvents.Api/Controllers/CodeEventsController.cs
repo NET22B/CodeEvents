@@ -9,8 +9,9 @@ using CodeEvents.Api.Data;
 using CodeEvents.Api.Data.Repositories;
 using CodeEvents.Api.Core.Entities;
 using AutoMapper;
-using CodeEvents.Api.Core.Dto;
+
 using Microsoft.AspNetCore.JsonPatch;
+using CodeEvents.Common.Dto;
 
 namespace CodeEvents.Api.Controllers
 {
