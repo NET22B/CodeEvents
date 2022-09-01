@@ -11,7 +11,8 @@ builder.Services.AddDbContext<CodeEventsApiContext>(options =>
 // Add services to the container.
 
 builder.Services.AddControllers(opt => opt.ReturnHttpNotAcceptable = true)
-                .AddXmlDataContractSerializerFormatters();
+                .AddNewtonsoftJson();
+              //  .AddXmlDataContractSerializerFormatters();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
