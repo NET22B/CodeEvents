@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CodeEvents.Api.Core.Dto;
+using CodeEvents.Api.Core.Entities;
 using CodeEvents.Api.Data;
 using CodeEvents.Api.Data.Repositories;
 using Microsoft.AspNetCore.Http;
@@ -49,7 +50,18 @@ namespace CodeEvents.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<LectureDto>> Create(string name, LectureCreateDto dto)
         {
-            return Ok();
+           var codeEvent = await uow.CodeEventRepository.GetAsync(name);
+            if(codeEvent is null)
+                return NotFound(new { Error = new[] { $"CodeEvent with name: [{name}] not found" } });
+
+            var lecture = mapper.Map<Lecture>(dto);
+            lecture.CodeEvent = codeEvent;
+            await uow.LectureRepository.AddAsync(lecture);
+
+            await uow.CompleteAsync();
+            var model = mapper.Map<LectureDto>(lecture);
+            return CreatedAtAction(nameof(GetLecture), new { name = codeEvent.Name, id = model.Id }, model);
+
         }
 
 
