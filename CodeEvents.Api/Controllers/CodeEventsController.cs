@@ -95,7 +95,7 @@ namespace CodeEvents.Api.Controllers
 
             patchDocument.ApplyTo(dto, ModelState);
 
-            if (!TryValidateModel(dto)) return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             mapper.Map(dto, codeevent);
 
