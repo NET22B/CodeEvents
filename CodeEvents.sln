@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeEvents.Api", "CodeEvents.Api\CodeEvents.Api.csproj", "{5E7A16FC-56C9-4757-8EA4-4F7DB05AF174}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeEvents.Client", "CodeEvents.Client\CodeEvents.Client.csproj", "{7A31276E-1A60-4D83-A0FD-3F90959FE1D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{5E7A16FC-56C9-4757-8EA4-4F7DB05AF174}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E7A16FC-56C9-4757-8EA4-4F7DB05AF174}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E7A16FC-56C9-4757-8EA4-4F7DB05AF174}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A31276E-1A60-4D83-A0FD-3F90959FE1D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A31276E-1A60-4D83-A0FD-3F90959FE1D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A31276E-1A60-4D83-A0FD-3F90959FE1D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A31276E-1A60-4D83-A0FD-3F90959FE1D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
