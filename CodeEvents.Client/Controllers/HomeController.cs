@@ -1,6 +1,8 @@
 ﻿using CodeEvents.Client.Models;
+using CodeEvents.Common.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace CodeEvents.Client.Controllers
 {
@@ -12,18 +14,24 @@ namespace CodeEvents.Client.Controllers
         {
             
            httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("https://localhost:7150");
+           httpClient.BaseAddress = new Uri("https://localhost:7150");
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var res = SimpleGet();
+            var res = await SimpleGet();
             return View();
         }
 
-        private async Task<IEnumerable<object>> SimpleGet()
+        private async Task<IEnumerable<CodeEventDto?>> SimpleGet()
         {
-            return null;
+            var response = await httpClient.GetAsync("api/events/?includelectures=true");
+            response.EnsureSuccessStatusCode();
+
+            var result = await response.Content.ReadAsStringAsync();
+            var codeEvents = JsonSerializer.Deserialize<IEnumerable<CodeEventDto>>(result, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+
+            return codeEvents!;
         }
 
         public IActionResult Privacy()
