@@ -10,6 +10,7 @@ namespace CodeEvents.Api.Data
         {
             CreateMap<CodeEvent, CodeEventDto>().ReverseMap();
             CreateMap<Lecture, LectureDto>().ReverseMap();
+            CreateMap<Lecture, LectureCreateDto>().ReverseMap();
 
         }
     }
