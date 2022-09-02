@@ -1,7 +1,33 @@
+using CodeEvents.Client.HttpClients;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//1
+builder.Services.AddHttpClient();
+
+//2
+builder.Services.AddHttpClient("CodeEventClient", client =>
+{
+    client.BaseAddress = new Uri("");
+    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json")); 
+});
+
+builder.Services.AddHttpClient("CodeEventClient2", client =>
+{
+    client.BaseAddress = new Uri("");
+    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json")); 
+});
+
+//3
+builder.Services.AddHttpClient<CodeEventClient>(client =>
+{
+    client.BaseAddress = new Uri("");
+    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+});
 
 var app = builder.Build();
 

@@ -35,6 +35,7 @@ namespace CodeEvents.Client.Controllers
 
         private async Task<CodeEventDto> PatchCodeEvent()
         {
+
              var patchDokument = new JsonPatchDocument<CodeEventDto>();
             patchDokument.Remove(e => e.LocationAddress);
             patchDokument.Replace(e => e.LocationCityTown, "Stockholm");
