@@ -15,11 +15,11 @@ namespace CodeEvents.Client.Controllers
     public class HomeController : Controller
     {
         private HttpClient httpClient;
-        private CodeEventClient codeEventClient;
+        private ICodeEventClient codeEventClient;
         private const string json = "application/json";
         private readonly IHttpClientFactory httpClientFactory;
 
-        public HomeController(IHttpClientFactory httpClientFactory, CodeEventClient codeEventClient)
+        public HomeController(IHttpClientFactory httpClientFactory, ICodeEventClient codeEventClient)
         {
            
            //httpClient = new HttpClient();

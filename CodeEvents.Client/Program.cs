@@ -22,7 +22,7 @@ builder.Services.AddHttpClient("CodeEventClient2", client =>
 });
 
 //3
-builder.Services.AddHttpClient<CodeEventClient>();
+builder.Services.AddHttpClient<ICodeEventClient, CodeEventClient>();
 
 var app = builder.Build();
 
