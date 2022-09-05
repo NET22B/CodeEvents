@@ -23,22 +23,22 @@ namespace CodeEvents.Client.HttpClients
             var request = new HttpRequestMessage(HttpMethod.Get, "api/events");
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
-            response.EnsureSuccessStatusCode();
-
             IEnumerable<CodeEventDto> codeEvents;
 
-            using (var stream = await response.Content.ReadAsStreamAsync())
+            using (var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead))
             {
+                response.EnsureSuccessStatusCode();
+
+                var stream = await response.Content.ReadAsStreamAsync();
+
                 using (var streamReader = new StreamReader(stream))
                 {
-                    using(var jsonReader = new JsonTextReader(streamReader))
+                    using (var jsonReader = new JsonTextReader(streamReader))
                     {
                         var serializer = new Newtonsoft.Json.JsonSerializer();
                         codeEvents = serializer.Deserialize<IEnumerable<CodeEventDto>>(jsonReader)!;
                     }
                 }
-
             }
 
             return codeEvents!;
