@@ -11,23 +11,18 @@ builder.Services.AddHttpClient();
 //2
 builder.Services.AddHttpClient("CodeEventClient", client =>
 {
-    client.BaseAddress = new Uri("");
+    client.BaseAddress = new Uri("https://localhost:7150");
     client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json")); 
 });
 
 builder.Services.AddHttpClient("CodeEventClient2", client =>
 {
-    client.BaseAddress = new Uri("");
+    client.BaseAddress = new Uri("https://localhost:7150");
     client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json")); 
 });
 
 //3
-builder.Services.AddHttpClient<CodeEventClient>(client =>
-{
-    client.BaseAddress = new Uri("");
-    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-
-});
+builder.Services.AddHttpClient<CodeEventClient>();
 
 var app = builder.Build();
 

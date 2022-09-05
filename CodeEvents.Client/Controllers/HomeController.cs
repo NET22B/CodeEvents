@@ -1,9 +1,11 @@
-﻿using CodeEvents.Client.Models;
+﻿using CodeEvents.Client.HttpClients;
+using CodeEvents.Client.Models;
 using CodeEvents.Common.Dto;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using JsonSerializer = System.Text.Json.JsonSerializer;
@@ -14,13 +16,20 @@ namespace CodeEvents.Client.Controllers
     {
         private HttpClient httpClient;
         private const string json = "application/json";
+        private readonly IHttpClientFactory httpClientFactory;
 
-        public HomeController()
+        public HomeController(IHttpClientFactory httpClientFactory, CodeEventClient codeEventClient)
         {
-            
-           httpClient = new HttpClient();
-           httpClient.BaseAddress = new Uri("https://localhost:7150");
-          // httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+           
+           //httpClient = new HttpClient();
+           //httpClient.BaseAddress = new Uri("https://localhost:7150");
+            this.httpClientFactory = httpClientFactory;
+
+
+            httpClient = httpClientFactory.CreateClient();
+            httpClient.BaseAddress = new Uri("https://localhost:7150");
+           // httpClient = httpClientFactory.CreateClient("CodeEventClient");
+            // httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         public async Task<IActionResult> Index()
