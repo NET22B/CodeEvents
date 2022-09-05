@@ -6,42 +6,30 @@ using System.Text.Json;
 
 namespace CodeEvents.Client.HttpClients
 {
-    public class CodeEventClient
+    public class CodeEventClient : BaseClient
     {
-        private readonly HttpClient client;
 
-        public CodeEventClient(HttpClient client)
+        public CodeEventClient(HttpClient client) : base(client, new Uri("https://localhost:7150"))
         {
-            this.client = client;
-            this.client.BaseAddress = new Uri("https://localhost:7150");
-            this.client.Timeout = new TimeSpan(0, 0, 30);
-            this.client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            
+            HttpClient.Timeout = new TimeSpan(0, 0, 30);
+            HttpClient.DefaultRequestHeaders.Clear();
+            HttpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<IEnumerable<CodeEventDto?>> GetWithRequestMessage()
+        public async Task<IEnumerable<CodeEventDto>?> GetCodeEvents(CancellationToken token)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, "api/events");
-            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            IEnumerable<CodeEventDto> codeEvents;
-
-            using (var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead))
-            {
-                response.EnsureSuccessStatusCode();
-
-                var stream = await response.Content.ReadAsStreamAsync();
-
-                using (var streamReader = new StreamReader(stream))
-                {
-                    using (var jsonReader = new JsonTextReader(streamReader))
-                    {
-                        var serializer = new Newtonsoft.Json.JsonSerializer();
-                        codeEvents = serializer.Deserialize<IEnumerable<CodeEventDto>>(jsonReader)!;
-                    }
-                }
-            }
-
-            return codeEvents!;
+            return await GetASync<IEnumerable<CodeEventDto>>(token, "api/events");
+        } 
+        
+        public async Task<CodeEventDto?> GetCodeEvent(string name, CancellationToken token)
+        {
+            return await GetASync<CodeEventDto>(token, $"api/events/{name}");
+        } 
+        
+        public async Task<LectureDto?> GetLecture(string name, int id, CancellationToken token)
+        {
+            return await GetASync<LectureDto>(token, $"api/events/{name}/lectures/{id}");
         }
 
 

@@ -42,7 +42,13 @@ namespace CodeEvents.Client.Controllers
             //var res = await CreateLecture();
             // var res = await PatchCodeEvent();
 
-            var res = await codeEventClient.GetWithRequestMessage();
+            var cancellation = new CancellationTokenSource();
+
+           
+
+            var res = await codeEventClient.GetCodeEvent( "Gruppen1", cancellation.Token);
+            var res2 = await codeEventClient.GetCodeEvents(cancellation.Token);
+            var res3 = await codeEventClient.GetLecture("Gruppen1", 101, cancellation.Token);
 
             return View();
         }
