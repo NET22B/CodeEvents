@@ -1,3 +1,4 @@
+using CodeEvents.Client.DelegatingHandlers;
 using CodeEvents.Client.HttpClients;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,7 +23,14 @@ builder.Services.AddHttpClient("CodeEventClient2", client =>
 });
 
 //3
-builder.Services.AddHttpClient<ICodeEventClient, CodeEventClient>();
+builder.Services.AddHttpClient<ICodeEventClient, CodeEventClient>()
+                .AddHttpMessageHandler(handler => new RetryDelagatingHandler());
+                //.ConfigurePrimaryHttpMessageHandler(handler => new HttpClientHandler
+                //{
+                //    AutomaticDecompression = System.Net.DecompressionMethods.GZip
+
+                //}); ; 
+
 
 var app = builder.Build();
 
