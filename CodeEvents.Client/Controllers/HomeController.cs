@@ -15,6 +15,7 @@ namespace CodeEvents.Client.Controllers
     public class HomeController : Controller
     {
         private HttpClient httpClient;
+        private CodeEventClient codeEventClient;
         private const string json = "application/json";
         private readonly IHttpClientFactory httpClientFactory;
 
@@ -27,9 +28,11 @@ namespace CodeEvents.Client.Controllers
 
 
             httpClient = httpClientFactory.CreateClient();
-            httpClient.BaseAddress = new Uri("https://localhost:7150");
-           // httpClient = httpClientFactory.CreateClient("CodeEventClient");
+            //httpClient.BaseAddress = new Uri("https://localhost:7150");
+            //httpClient = httpClientFactory.CreateClient("CodeEventClient");
             // httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            this.codeEventClient = codeEventClient;
         }
 
         public async Task<IActionResult> Index()
@@ -37,7 +40,9 @@ namespace CodeEvents.Client.Controllers
             //var res = await SimpleGet();
             //var res = await GetWithRequestMessage();
             //var res = await CreateLecture();
-            var res = await PatchCodeEvent();
+            // var res = await PatchCodeEvent();
+
+            var res = await codeEventClient.GetWithRequestMessage();
 
             return View();
         }
